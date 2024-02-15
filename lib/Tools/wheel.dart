@@ -1,22 +1,22 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+import 'package:provider/provider.dart';
 
-List<FortuneItem> items = const [
-  FortuneItem(child: Text("Hello")),
-  FortuneItem(child: Text("Hi")),
-  FortuneItem(child: Text("Poop")),
-  FortuneItem(child: Text("Cheese")),
-];
+
 
 class WheelAppState extends ChangeNotifier {
-  var items = <FortuneItem>[];
+  List<FortuneItem> items = [
+    FortuneItem(child: Text("Item 1")),
+    FortuneItem(child: Text("Item 2")),
+    FortuneItem(child: Text("Item 3")),
+    FortuneItem(child: Text("Item 4")),
+    FortuneItem(child: Text("Item 5")),
+    FortuneItem(child: Text("poop")),
+  ];
 
-  void init() {
-    for (int i = 0; i < 4; i++) {
-      items.add(FortuneItem(child: Text("Item $i")));
-    }
-  }
+
+  get getItems => items;
 
   void addItem(String data) {
     items.add(FortuneItem(child: Text(data)));
@@ -24,9 +24,20 @@ class WheelAppState extends ChangeNotifier {
   }
 
   void removeItem(String data) {
-    items.remove(FortuneItem(child: Text(data)));
+    if (items.length == 2) {
+      return;
+    }
+    removeTheOne(data);
     notifyListeners();
   }
+  void removeTheOne(String data){
+    for(int i = 0; i < items.length; i++){
+      if(items[i].child.toString() == 'Text("$data")'){
+        items.removeAt(i);
+      }
+    }
+  }
+  
 }
 
 class WheelSpin extends StatefulWidget {
@@ -52,6 +63,9 @@ class _WheelSpin extends State<WheelSpin> {
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<WheelAppState>();
+    var items = appState.getItems;
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -59,7 +73,7 @@ class _WheelSpin extends State<WheelSpin> {
           children: [
             ElevatedButton(
               onPressed: () {
-                editItems();
+                editItems(context);
               },
              child: Text('Edit Items')
             ),
@@ -69,6 +83,7 @@ class _WheelSpin extends State<WheelSpin> {
                 animateFirst: false,
                 duration: const Duration(seconds: 3),
                 items: items,
+                
               ),
             ),
             ElevatedButton(
@@ -76,11 +91,15 @@ class _WheelSpin extends State<WheelSpin> {
                 foregroundColor: Theme.of(context).colorScheme.onSecondary,
               ),
               onPressed: () {
+                var randoNum = Fortune.randomInt(0, items.length);
                 setState(
                   () => selected.add(
-                    Fortune.randomInt(0, items.length),
+                    randoNum,
                   ),
                 );
+                Timer(Duration(milliseconds: 3250), () {
+                _showResult(context, items, randoNum);
+                });
               },
               child: Text(
                 "Spin the Wheel",
@@ -96,8 +115,83 @@ class _WheelSpin extends State<WheelSpin> {
       ),
     );
   }
+
+  void _showResult(BuildContext context, List<FortuneItem> items, int selected) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('The wheel has chosen:'),
+          content: Text(
+            items[selected].child.toString().substring(6, items[selected].child.toString().length - 2),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.normal,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void editItems(BuildContext context) {
+    String _value = '';
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        var appState = context.watch<WheelAppState>();
+        var items = appState.getItems;
+        return AlertDialog(
+          title: Text('Edit Items'),
+          content: SizedBox(
+            height: 300,
+            child: Column(
+              children: [
+                Column(                
+                  children: [
+                    for(int i = 0; i < items.length; i++)
+                      Text(
+                        items[i].child.toString().substring(6, items[i].child.toString().length - 2),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal,
+                          color: Theme.of(context).colorScheme.primary,                  
+                        ),
+                      ),
+                  ],
+                ),
+                // i want to list the current items on the wheel, they are stored in widgets so i cant use dynamics
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'New Item',
+                    ),
+                    onChanged: (value) {
+                      _value = value;
+                    },
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                      context.read<WheelAppState>().addItem(_value);
+                  },
+                  child: Text('Add Item'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                      context.read<WheelAppState>().removeItem(_value.trim());
+                  },
+                  child: Text('Remove Item'),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
-void editItems() {
-  print("poop");
-}
+
