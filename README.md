@@ -11,6 +11,18 @@ This is a simple Flutter project that demonstrates the use of the following widg
 - `GridView`
 - `Card`
 
+## Features
+- Random Number Generator
+-- Generates a random number between a min value > 0 and a max value < MAX_INT
+- Random Wheel
+-- Picks a random item from a list of items
+-- Items can be added or removed with the help of a text field and a button
+- Random Dice
+-- Ability to add or remove dice and roll them
+- Random Coin
+-- Flips a coin and displays the result
+-- displays realtime animation of the coin flip
+
 ## Reason Behind This Project
 
 I created this project to demonstrate the use of the above-mentioned widgets in a simple and fun way. This project is also a part of my Flutter learning journey.
