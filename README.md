@@ -17,7 +17,14 @@ I created this project to demonstrate the use of the above-mentioned widgets in 
 I discovered that the best way to learn something is to teach it to someone else. So, I decided to create this project and share it with the community.
 
 ## How to Run
+Use Command:
+```
+flutter run
+```
+in the terminal after installing flutter sdk
 
-```
-Use Command "flutter run" in the terminal after installing flutter sdk
-```
+# Demo
+![](https://github.com/mykalbayouk/FlutterRandomFun/main/demo_pics/rng.png)
+![](https://github.com/mykalbayouk/FlutterRandomFun/main/demo_pics/wheel.png)
+![](https://github.com/mykalbayouk/FlutterRandomFun/main/demo_pics/dice.png)
+![](https://github.com/mykalbayouk/FlutterRandomFun/main/demo_pics/coin.png)
