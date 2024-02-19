@@ -1,16 +1,17 @@
-# random_num_gen
+# Flutter Random Fun Demo Project
 
-A new Flutter project.
+This is a simple Flutter project that demonstrates the use of the following widgets:
+- `Text`
+- `ElevatedButton`
+- `Container`
+- `Column`
+- `Row`
+- `Image`
+- `ListView`
+- `GridView`
+- `Card`
 
-## Getting Started
+## Reason Behind This Project
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I created this project to demonstrate the use of the above-mentioned widgets in a simple and fun way. This project is also a part of my Flutter learning journey.
+I discovered that the best way to learn something is to teach it to someone else. So, I decided to create this project and share it with the community.
