@@ -36,7 +36,4 @@ flutter run
 in the terminal after installing flutter sdk
 
 # Demo
-![](https://github.com/mykalbayouk/FlutterRandomFun/blob/main/demo_pics/rng.png)
-![](https://github.com/mykalbayouk/FlutterRandomFun/blob/main/demo_pics/wheel.png)
-![](https://github.com/mykalbayouk/FlutterRandomFun/blob/main/demo_pics/dice.png)
-![](https://github.com/mykalbayouk/FlutterRandomFun/blob/main/demo_pics/coin.png)
+![](https://github.com/mykalbayouk/FlutterRandomFun/blob/main/demo_pics/flutterrngapp.gif)

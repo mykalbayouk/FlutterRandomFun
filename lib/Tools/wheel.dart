@@ -10,7 +10,6 @@ class WheelAppState extends ChangeNotifier {
     FortuneItem(child: Text("Item 1")),
     FortuneItem(child: Text("Item 2")),
     FortuneItem(child: Text("Item 3")),
-    FortuneItem(child: Text("poop")),
   ];
 
 
