@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(
-            "$title",
+            title,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.normal,
